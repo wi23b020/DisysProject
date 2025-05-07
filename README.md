@@ -5,7 +5,9 @@
 
 3.Afterwards open the energy-gui file --> to start the gui use the "HelloApplication" in src/main/java/org.example.energygui
 
-4.After starting both of the projects in the gui you can get the current hardcoded data and filter the historical hardcoded data
+4.For the historical data the only possible dates that cann be typed in the "start" and "end" text fields are from 2025-01-10 to 2025-01-14
+
+5.After starting both of the projects in the gui you can get the current hardcoded data and filter the historical hardcoded data
 
 #Screenshots of the GUI
 
