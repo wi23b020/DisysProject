@@ -1,4 +1,4 @@
-#How to start the project
+# How to start the project
 1.Open both energy-api and energy-gui files in InteliJ
 
 2.First open the energy-api file --> afterswards start the "EnergyApiApplication" in src/main/java/com.energycommunity.energy_api
@@ -13,7 +13,7 @@
 
 
 
-#Screenshots of the GUI
+# Screenshots of the GUI
 
 ![image](https://github.com/user-attachments/assets/90c86d92-a6a2-4d40-b475-b50b45f911c8)
 ![image](https://github.com/user-attachments/assets/9dc2013a-e5ff-4dfc-81f6-8ff625b1b52a)
