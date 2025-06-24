@@ -14,23 +14,23 @@
     <HBox alignment="CENTER" spacing="10">
         <Button fx:id="fetchCurrentBtn" onAction="#onGetCurrent" text="Get Current" />
         <Label text="Start:" />
-        <TextField fx:id="startField" promptText="e.g. 2025-01-10" />
+        <TextField fx:id="startField" promptText="e.g. 2025-01-10T14:00:00" />
         <Label text="End:" />
-        <TextField fx:id="endField" promptText="e.g. 2025-01-14" />
+        <TextField fx:id="endField" promptText="e.g. 2025-01-14T15:00:00" />
         <Button fx:id="fetchHistoryBtn" onAction="#onGetHistorical" text="Get Historical" />
     </HBox>
 
 
     <TextArea fx:id="outputArea" prefHeight="170" wrapText="true" />
 
-    <TableView fx:id="tableView" prefHeight="200" prefWidth="550">
+    <TableView fx:id="tableView">
         <columns>
-            <TableColumn fx:id="dayCol" prefWidth="175.0" text="Day" />
-            <TableColumn fx:id="producedCol" prefWidth="100" text="Produced" />
-            <TableColumn fx:id="usedCol" prefWidth="100" text="Used" />
-            <TableColumn fx:id="gridCol" prefWidth="100" text="Grid" />
+            <TableColumn fx:id="hourCol" text="Hour" />
+            <TableColumn fx:id="communityDepletedCol" text="Community Depleted" />
+            <TableColumn fx:id="gridPortionCol" text="Grid Portion" />
         </columns>
     </TableView>
+
 
 
 </VBox>
