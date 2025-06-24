@@ -1,7 +1,9 @@
-package org.example.energygui;
+package org.example.energygui.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
+import org.example.energygui.model.CurrentData;
+
 import java.net.http.*;
 import java.net.URI;
 import java.util.List;

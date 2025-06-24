@@ -1,4 +1,4 @@
-package org.example.energygui;
+package org.example.energygui.model;
 
 import java.time.LocalDate;
 

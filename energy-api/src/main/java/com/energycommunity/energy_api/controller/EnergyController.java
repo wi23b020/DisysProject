@@ -1,10 +1,8 @@
 package com.energycommunity.energy_api.controller;
 
-import com.energycommunity.energy_api.EnergyService;
-import com.energycommunity.energy_api.model.EnergyData;
-import org.example.currentpercentageservice.CurrentPercentage;
+import com.energycommunity.energy_api.service.EnergyService;
+import org.example.currentpercentageservice.model.CurrentPercentage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

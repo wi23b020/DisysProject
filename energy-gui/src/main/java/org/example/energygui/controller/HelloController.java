@@ -1,4 +1,4 @@
-package org.example.energygui;
+package org.example.energygui.controller;
 
 
 import javafx.beans.property.SimpleObjectProperty;
@@ -7,6 +7,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.example.energygui.api.ApiClient;
+import org.example.energygui.model.CurrentData;
 
 import java.util.List;
 
@@ -51,7 +53,7 @@ public class HelloController {
             ObservableList<CurrentData> observableList = FXCollections.observableArrayList(dataList);
             tableView.setItems(observableList);
         } catch (Exception e) {
-            outputArea.setText("Error: " + e.getMessage());
+            outputArea.setText("Error: please insert a valid date Format: example 2025-06-24T14:00:00");
             e.printStackTrace(); // Log the full error to console
         }
 
