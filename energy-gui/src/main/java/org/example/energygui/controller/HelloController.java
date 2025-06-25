@@ -44,13 +44,20 @@ public class HelloController {
 
             outputArea.setText(data.toString());
 
-            ObservableList<CurrentData> observableList = FXCollections.observableArrayList(data);
-            tableView.setItems(observableList);
+            ObservableList<CurrentData> items = tableView.getItems();
+            if (items == null) {
+                items = FXCollections.observableArrayList();
+                tableView.setItems(items);
+            }
+            items.add(data);
+
         } catch (Exception e) {
             outputArea.setText("Error: " + e.getMessage());
             e.printStackTrace();
         }
     }
+
+
 
     @FXML
     protected void onGetHistorical() {
