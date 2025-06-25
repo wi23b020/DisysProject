@@ -11,6 +11,7 @@ import org.example.energygui.api.ApiClient;
 import org.example.energygui.model.CurrentData;
 
 import java.util.List;
+import java.util.Locale;
 
 public class HelloController {
 
@@ -67,6 +68,18 @@ public class HelloController {
             List<CurrentData> dataList = ApiClient.getHistorical(start, end);
             ObservableList<CurrentData> observableList = FXCollections.observableArrayList(dataList);
             tableView.setItems(observableList);
+
+            StringBuilder sb = new StringBuilder();
+            for (CurrentData d : dataList) {
+                String comm  = String.format("%.2f", d.getCommunityDepleted());
+                String grid  = String.format("%.2f", d.getGridPortion());
+                sb.append(d.getHour().toString())
+                        .append(" → Community: ").append(comm)
+                        .append(", Grid: ").append(grid)
+                        .append("\n");
+            }
+            outputArea.setText(sb.toString());
+
         } catch (Exception e) {
             outputArea.setText("Error: please insert a valid date Format: example 2025-06-24T14:00:00");
             e.printStackTrace(); // Log the full error to console
