@@ -38,12 +38,14 @@ class EnergyControllerTest {
 
     @Test
     void getCurrentPercentage_returnsOkAndJson() throws Exception {
-        // Default-Konstruktor und Setter verwenden
+        System.out.println("Test: GET /energy/current → status 200 & JSON mit communityDepleted und gridPortion");
+        // Given
         CurrentPercentage cp = new CurrentPercentage();
         cp.setCommunityDepleted(10.0);
         cp.setGridPortion(90.0);
         when(energyService.getCurrentPercentage()).thenReturn(cp);
 
+        // When / Then
         mockMvc.perform(get("/energy/current"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -51,10 +53,13 @@ class EnergyControllerTest {
                 .andExpect(jsonPath("$.gridPortion").value(90.0));
 
         verify(energyService).getCurrentPercentage();
+        System.out.println("OK: /energy/current liefert communityDepleted=10.0, gridPortion=90.0");
     }
 
     @Test
     void getHistorical_returnsOkAndJsonList() throws Exception {
+        System.out.println("Test: GET /energy/historical?start=&end= → status 200 & JSON-Array mit Werten");
+        // Given
         LocalDateTime start = LocalDateTime.of(2025, 6, 1, 0, 0);
         LocalDateTime end   = LocalDateTime.of(2025, 6, 2, 0, 0);
         CurrentPercentage cp = new CurrentPercentage();
@@ -63,6 +68,7 @@ class EnergyControllerTest {
         when(energyService.getHistorical(start, end))
                 .thenReturn(Collections.singletonList(cp));
 
+        // When / Then
         mockMvc.perform(get("/energy/historical")
                         .param("start", start.toString())
                         .param("end", end.toString()))
@@ -72,5 +78,6 @@ class EnergyControllerTest {
                 .andExpect(jsonPath("$[0].gridPortion").value(80.0));
 
         verify(energyService).getHistorical(start, end);
+        System.out.println("OK: /energy/historical liefert [communityDepleted=20.0, gridPortion=80.0]");
     }
 }

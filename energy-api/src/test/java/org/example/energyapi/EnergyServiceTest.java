@@ -1,7 +1,5 @@
 package org.example.energyapi;
 
-
-
 import com.energycommunity.energy_api.service.EnergyService;
 import org.example.currentpercentageservice.model.CurrentPercentage;
 import org.junit.jupiter.api.Test;
@@ -19,7 +17,8 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
@@ -34,34 +33,36 @@ class EnergyServiceTest {
 
     @Test
     void getCurrentPercentage_returnsExpected() {
-        // <- Statt new CurrentPercentage(10,90) …
+        System.out.println("Test: getCurrentPercentage_returnsExpected – rufe /internal/current auf und erwarte das zurückgegebene Objekt");
+        // Arrange
         CurrentPercentage cp = new CurrentPercentage();
         cp.setCommunityDepleted(10.0);
         cp.setGridPortion(90.0);
-
         when(restTemplate.getForObject(
                 "http://localhost:8083/internal/current",
                 CurrentPercentage.class))
                 .thenReturn(cp);
 
+        // Act
         CurrentPercentage result = energyService.getCurrentPercentage();
 
+        // Assert
         assertSame(cp, result);
         verify(restTemplate)
                 .getForObject("http://localhost:8083/internal/current", CurrentPercentage.class);
+        System.out.println("OK: getCurrentPercentage hat das erwartete CurrentPercentage-Objekt zurückgegeben");
     }
 
     @Test
     void getHistorical_returnsExpectedList() {
+        System.out.println("Test: getHistorical_returnsExpectedList – rufe /internal/historical?start=&end= auf und erwarte eine Liste");
+        // Arrange
         LocalDateTime start = LocalDateTime.of(2025, 6, 1, 0, 0);
         LocalDateTime end   = LocalDateTime.of(2025, 6, 2, 0, 0);
-
         CurrentPercentage cp = new CurrentPercentage();
         cp.setCommunityDepleted(20.0);
         cp.setGridPortion(80.0);
         List<CurrentPercentage> list = Collections.singletonList(cp);
-
-        // <- ResponseEntity.ok(...) oder new ResponseEntity<>(body, HttpStatus.OK)
         ResponseEntity<List<CurrentPercentage>> response =
                 new ResponseEntity<>(list, HttpStatus.OK);
 
@@ -76,8 +77,10 @@ class EnergyServiceTest {
                 any(ParameterizedTypeReference.class)
         )).thenReturn(response);
 
+        // Act
         List<CurrentPercentage> result = energyService.getHistorical(start, end);
 
+        // Assert
         assertEquals(list, result);
         verify(restTemplate).exchange(
                 eq(url),
@@ -85,5 +88,6 @@ class EnergyServiceTest {
                 isNull(),
                 any(ParameterizedTypeReference.class)
         );
+        System.out.println("OK: getHistorical hat die erwartete Liste zurückgegeben");
     }
 }
