@@ -30,19 +30,27 @@ public class HelloController {
                 new SimpleStringProperty(cell.getValue().getHour().toString()));
         communityDepletedCol.setCellValueFactory(cell -> new SimpleObjectProperty<>(cell.getValue().getCommunityDepleted()));
         gridPortionCol.setCellValueFactory(cell -> new SimpleObjectProperty<>(cell.getValue().getGridPortion()));
+
+        tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        hourCol.prefWidthProperty().bind(tableView.widthProperty().divide(3));
+        communityDepletedCol.prefWidthProperty().bind(tableView.widthProperty().divide(3));
+        gridPortionCol.prefWidthProperty().bind(tableView.widthProperty().divide(3));
     }
 
     @FXML
     protected void onGetCurrent() {
         try {
             CurrentData data = ApiClient.getCurrent();
+
             outputArea.setText(data.toString());
+
+            ObservableList<CurrentData> observableList = FXCollections.observableArrayList(data);
+            tableView.setItems(observableList);
         } catch (Exception e) {
             outputArea.setText("Error: " + e.getMessage());
+            e.printStackTrace();
         }
     }
-
-
 
     @FXML
     protected void onGetHistorical() {
