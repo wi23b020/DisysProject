@@ -12,6 +12,6 @@ public interface HourlyUsageRepository extends CrudRepository<HourlyEnergyUsage,
     @Query("SELECT h FROM HourlyEnergyUsage h WHERE h.hour BETWEEN :from AND :to")
     HourlyEnergyUsage findByHourRange(@Param("from") LocalDateTime from, @Param("to") LocalDateTime to);
 
-    // 🆕 Fügt automatisch die neueste Stunde ein
+    // Fügt automatisch die neueste Stunde ein
     HourlyEnergyUsage findTopByOrderByHourDesc();
 }
