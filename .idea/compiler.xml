@@ -12,7 +12,7 @@
         <module name="energy-user" />
         <module name="energy-gui" />
       </profile>
-      <profile name="Annotation profile for disys-project" enabled="true">
+      <profile name="Annotation profile for DisysProject" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />

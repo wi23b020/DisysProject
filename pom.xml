@@ -11,8 +11,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>at.fhtechnikum</groupId>
-    <artifactId>disys-project</artifactId>
+    <artifactId>DisysProject</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
